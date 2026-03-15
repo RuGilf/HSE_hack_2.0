@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "VkusVill Quality Ratings",
+  "version": "1.0.0",
+  "description": "Показывает оценки качества продуктов на сайте ВкусВилл",
+  "permissions": [],
+  "host_permissions": [
+    "https://vkusvill.ru/*",
+    "http://localhost:8000/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://vkusvill.ru/*"],
+      "js": ["content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}

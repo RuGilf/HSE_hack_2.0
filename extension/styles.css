@@ -1,0 +1,442 @@
+/* VkusVill Quality Ratings */
+
+@font-face {
+  font-family: 'Euclid';
+  src: url('fonts/euclid-regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --vv-green: #179C49;
+  --vv-orange: #F06D24;
+  --vv-red: #DA1047;
+  --vv-yellow: #FFD508;
+  --vv-font: 'Euclid', Helvetica, Arial, sans-serif;
+}
+
+/* ═══ КАТАЛОГ: сортировка и бейдж ═══ */
+
+.vv-sort-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 14px;
+  margin: 0 0 12px 0;
+  font-family: var(--vv-font);
+  font-size: 13px;
+  font-weight: 600;
+  color: #179C49;
+  background: #fff;
+  border: 1px solid #179C49;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.vv-sort-btn:hover {
+  background: #179C49;
+  color: #fff;
+}
+
+.vv-badge-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.vv-badge-pill {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-family: var(--vv-font);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.vv-badge-pill--best {
+  background: linear-gradient(135deg, #179C49 0%, #128a3d 100%);
+  color: #fff;
+}
+
+.vv-badge-pill--value {
+  background: linear-gradient(135deg, #FFD508 0%, #e5c007 100%);
+  color: #333;
+}
+
+.vv-product-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.vv-product-badges .vv-badge-pill {
+  font-size: 11px;
+  padding: 4px 10px;
+}
+
+.vv-catalog-badge-wrap {
+  position: relative;
+  display: inline-block;
+  margin: 4px 0;
+  z-index: 2147483646;
+}
+
+.vv-rating-badge--catalog {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-family: var(--vv-font);
+  font-weight: 600;
+  font-size: 12px;
+  color: #fff;
+  cursor: default;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.vv-rating-badge--catalog:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.vv-rating-badge--tier9 { background: #179C49; color: #fff; }
+.vv-rating-badge--tier8 { background: #3BA847; color: #fff; }
+.vv-rating-badge--tier7 { background: #5FB345; color: #fff; }
+.vv-rating-badge--tier6 { background: #8BC63E; color: #fff; }
+.vv-rating-badge--tier5 { background: #B8C93C; color: #fff; }
+.vv-rating-badge--tier4 { background: #E5CD3A; color: #333; }
+.vv-rating-badge--tier3 { background: #F0A830; color: #fff; }
+.vv-rating-badge--tier2 { background: #F06D24; color: #fff; }
+.vv-rating-badge--tier1 { background: #E03E2A; color: #fff; }
+.vv-rating-badge--tier0 { background: #DA1047; color: #fff; }
+.vv-rating-badge--no-data { background: #999; color: #fff; }
+
+.vv-catalog-tooltip {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  min-width: 220px;
+  max-width: 300px;
+  padding: 12px 14px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  font-family: var(--vv-font);
+  font-size: 12px;
+  line-height: 1.45;
+  color: #333;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+  z-index: 2147483647;
+}
+
+
+.vv-catalog-badge-wrap.vv-tooltip-visible {
+  z-index: 2147483647;
+}
+
+.vv-catalog-badge-wrap::after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: #fff;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  z-index: 2147483647;
+}
+
+.vv-catalog-badge-wrap.vv-tooltip-visible::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+.vv-catalog-tooltip--visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.vv-tooltip-pros, .vv-tooltip-cons { margin-top: 8px; }
+.vv-tooltip-pros:first-child, .vv-tooltip-cons:first-child { margin-top: 0; }
+.vv-tooltip-label {
+  display: block;
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+.vv-tooltip-pros .vv-tooltip-label { color: #128a3d; }
+.vv-tooltip-cons .vv-tooltip-label { color: #DA1047; }
+
+/* ═══ СТРАНИЦА ТОВАРА ═══ */
+
+.vv-product-block {
+  margin: 16px 0 24px;
+  padding: 0;
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #e8e8e8;
+  overflow: hidden;
+  font-family: var(--vv-font);
+  max-width: 520px;
+}
+
+.vv-product-block--tier9 { border-top: 3px solid #179C49; }
+.vv-product-block--tier8 { border-top: 3px solid #3BA847; }
+.vv-product-block--tier7 { border-top: 3px solid #5FB345; }
+.vv-product-block--tier6 { border-top: 3px solid #8BC63E; }
+.vv-product-block--tier5 { border-top: 3px solid #B8C93C; }
+.vv-product-block--tier4 { border-top: 3px solid #E5CD3A; }
+.vv-product-block--tier3 { border-top: 3px solid #F0A830; }
+.vv-product-block--tier2 { border-top: 3px solid #F06D24; }
+.vv-product-block--tier1 { border-top: 3px solid #E03E2A; }
+.vv-product-block--tier0 { border-top: 3px solid #DA1047; }
+
+.vv-product-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: #fafafa;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.vv-rating-badge--page {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 16px;
+  color: #fff;
+}
+.vv-rating-badge--page.vv-rating-badge--tier9 { background: #179C49; }
+.vv-rating-badge--page.vv-rating-badge--tier8 { background: #3BA847; }
+.vv-rating-badge--page.vv-rating-badge--tier7 { background: #5FB345; }
+.vv-rating-badge--page.vv-rating-badge--tier6 { background: #8BC63E; }
+.vv-rating-badge--page.vv-rating-badge--tier5 { background: #B8C93C; }
+.vv-rating-badge--page.vv-rating-badge--tier4 { background: #E5CD3A; color: #333; }
+.vv-rating-badge--page.vv-rating-badge--tier3 { background: #F0A830; }
+.vv-rating-badge--page.vv-rating-badge--tier2 { background: #F06D24; }
+.vv-rating-badge--page.vv-rating-badge--tier1 { background: #E03E2A; }
+.vv-rating-badge--page.vv-rating-badge--tier0 { background: #DA1047; }
+
+.vv-product-header-label {
+  font-size: 13px;
+  color: #666;
+  font-weight: 500;
+  font-family: var(--vv-font);
+}
+
+.vv-product-details { padding: 16px 18px; }
+
+.vv-product-pros, .vv-product-cons {
+  display: flex;
+  gap: 12px;
+  margin-top: 14px;
+}
+.vv-product-pros:first-child, .vv-product-cons:first-child { margin-top: 0; }
+
+.vv-product-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.vv-product-icon .vv-icon-svg {
+  width: 14px;
+  height: 14px;
+  display: block;
+}
+.vv-product-icon--plus {
+  background: rgba(23, 156, 73, 0.15);
+  color: #179C49;
+}
+.vv-product-icon--minus {
+  background: rgba(218, 16, 71, 0.12);
+  color: #DA1047;
+}
+
+.vv-product-text {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--vv-font);
+}
+.vv-product-text strong {
+  display: block;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.vv-product-pros .vv-product-text strong { color: #128a3d; }
+.vv-product-cons .vv-product-text strong { color: #DA1047; }
+.vv-product-text p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+}
+
+/* ═══ РЕКОМЕНДАЦИИ И КЛАСТЕРЫ ═══ */
+
+.vv-recommendations-block {
+  margin: 16px 0 24px;
+  padding: 16px 18px;
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #e8e8e8;
+  font-family: var(--vv-font);
+  max-width: 520px;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  align-self: flex-start;
+}
+
+.vv-cluster-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 12px;
+  background: #f0f7ff;
+  color: #2563eb;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.vv-recommendations-header,
+.vv-cluster-tops-header {
+  font-size: 14px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.vv-cluster-tops-section {
+  margin-top: 16px;
+}
+
+/* Карточки товаров — горизонтальный скролл */
+.vv-recommendations-cards {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 8px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: #ccc #f0f0f0;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.vv-recommendations-cards::-webkit-scrollbar {
+  height: 6px;
+}
+
+.vv-recommendations-cards::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 3px;
+}
+
+.vv-recommendations-cards::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+}
+
+.vv-recommendations-cards::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
+.vv-product-card {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  width: 155px;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #e8e8e8;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  scroll-snap-align: start;
+}
+
+.vv-product-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.vv-card-image {
+  aspect-ratio: 1;
+  background-size: cover;
+  background-position: center;
+  background-color: #f5f5f5;
+}
+
+.vv-card-image--placeholder {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24' fill='none' stroke='%23ccc' stroke-width='1.5'%3E%3Crect x='3' y='3' width='18' height='18' rx='2'/%3E%3Ccircle cx='8.5' cy='8.5' r='1.5'/%3E%3Cpath d='M21 15l-5-5L5 21'/%3E%3C/svg%3E");
+  background-size: 40%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.vv-card-body {
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-height: 0;
+}
+
+.vv-card-badge {
+  align-self: flex-start;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.vv-card-name {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.35;
+  color: #333;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.vv-card-meta {
+  font-size: 11px;
+  color: #666;
+}
+
+.vv-card-reason {
+  font-size: 10px;
+  color: #888;
+  line-height: 1.3;
+  margin-top: 2px;
+}

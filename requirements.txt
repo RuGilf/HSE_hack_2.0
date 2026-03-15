@@ -1,0 +1,5 @@
+cerebras-cloud-sdk
+aiosqlite
+trueskill
+fastapi
+uvicorn[standard]

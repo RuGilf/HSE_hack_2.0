@@ -1,6 +1,7 @@
 # VkusVill Quality Ratings
 
-Пример работы и презентация: https://drive.google.com/drive/folders/1z76reV00_pyHas4CT03bQj6c7fOxximH?usp=sharing
+Пример работы и презентация: 
+https://drive.google.com/drive/folders/1z76reV00_pyHas4CT03bQj6c7fOxximH?usp=sharing
 
 Браузерное расширение, которое показывает оценки полезности товаров на [vkusvill.ru](https://vkusvill.ru). Оценки формируются на основе LLM-скоринга и TrueSkill.
 

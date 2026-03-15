@@ -93,7 +93,3 @@ python scorer.py solo
 - Python 3.12+
 - Chrome или Edge
 - Cerebras API Key (только для скоринга)
-
-## Лицензия
-
-MIT

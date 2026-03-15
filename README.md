@@ -92,4 +92,4 @@ python scorer.py solo
 
 - Python 3.12+
 - Chrome или Edge
-- Cerebras API Key (только для скоринга)
+- Gemini API key (только для скоринга)
